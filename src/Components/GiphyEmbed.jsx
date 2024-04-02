@@ -6,7 +6,7 @@ function GiphyEmbed() {
     return (
         <>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(12,1fr)" }}>
-                <img src="https://media.giphy.com/media/Ibrd9KjYB40lxABQVF/giphy.gif?cid=790b76119oylty0mkrfzzbcpk4xaeolfd8d0jq1vtear06rm&ep=v1_gifs_search&rid=giphy.gif&ct=g" style={{
+                <img src="https://64.media.tumblr.com/0707cc67f826530cc15d3915855f16d7/tumblr_p7atvmVMNw1sr5vsyo5_r4_540.gifv" style={{
                     gridColumn: "1/-1", width: "100%", gridRow: "2/5", height: windowWidth<768?"70vh":"100vh"
                 }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} />
 

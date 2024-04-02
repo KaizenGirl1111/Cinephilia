@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\assets",
+    "\\public",
     "\\src",
     "\\src\\Components"
   ],
-  "SelectedNode": "\\src\\Components\\MovieCard.jsx",
+  "SelectedNode": "\\src\\Components\\AddMovieForm.jsx",
   "PreviewInSolutionExplorer": false
 }

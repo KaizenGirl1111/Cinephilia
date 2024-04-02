@@ -1,4 +1,7 @@
-import MovieCard from './MovieCard.jsx'
+﻿import MovieCard from './MovieCard.jsx'
+import { useState } from "react"
+
+import Slider from "react-slick";
 
 function MovieCardMap() {
     /*
@@ -77,87 +80,303 @@ function MovieCardMap() {
     */
     const movie = [
         {
-            name: "Casablanca",
-            poster: "https://upload.wikimedia.org/wikipedia/commons/0/00/Bogart_Bergman_Casablanca.jpg",
+            name: "Black Swan",
+            poster: "https://upload.wikimedia.org/wikipedia/en/6/68/Black_Swan_poster.jpg",
+            rating: 8.0,
+            summary: "A psychological thriller that follows the intense rivalry between two ballet dancers competing for the lead role in a production of 'Swan Lake', blurring the lines between reality and hallucination.",
+            glimpse: "https://imdb-video.media-imdb.com/vi3985807385/1434659607842-pgv4ql-1616202439360.mp4?Expires=1711958776&Signature=eglDwbfTqirkXmMxmHt3LDCtyrQs1dMQr6nwtPMuWq1bGLvFnQFhohv1raWarQo59ln4wbttaC72ZeHVZIVGGw7EJGm9V0Mt3YICtL-GtGTtfGOIWUhLnk0GbFYi8fYNwVLRCwzMa0NmDVlHRT1Q1yuvOAOODGSiOHSVpGmMS10eumv77I7T9EPl6IiO3-r2CcxYJe72PnT~BJmKKjMhao3cd7sFSCYl-mMb4EccsCEpH~ghUFYBhSIAtsVjuiRbWrHdXgBy7kY~S-59YSrsCgXfIZr8zt8TxqrXAGGk5Ab5BXOMWOr5AzMmWRwJe1eF~hQNjHmEzNwRJ-tdaeXOow__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Darren Aronofsky",
+            year: 2010,
+            cast: ["Natalie Portman", "Mila Kunis"],
+            genre: "Thriller"
+        },
+        {
+            name: "Before Sunrise",
+            poster: "https://upload.wikimedia.org/wikipedia/en/d/da/Before_Sunrise_poster.jpg",
+            rating: 8.1,
+            summary: "A romantic drama that unfolds over the course of a single night in Vienna, as two strangers, an American man and a French woman, explore the city and share intimate conversations.",
+            glimpse: "https://imdb-video.media-imdb.com/vi2797142297/1434659607842-pgv4ql-1563503953936.mp4?Expires=1711959039&Signature=kKkyhd~pC1cibhcDHSEkVKPn0PvXBrqGKH30-7u-nxANpNW2boQ-acOTSMBHyClb5xJmFifwJ2McX7CU3Pp8ER8KvxCZtjaLpmjSjRhrRWx67Jc~VbzOSecdlvH5D-yuDznFjw-w4P-vxd2Rsq85paPe3G3tUA0GFOqIhRYhYEbLHBlaRWeolHPiW3i7DQZ3RA5rULSNSZgDFHQvPH8bFvJccEoRP3lEEu1nM6WFDMvQiIP4L57Gpy1YY-DzU4i6zgPLl2ET2PwfxO2VldMWiQ9Isp4hgjypYwxyC8JkVdDwJjFfx5FPrVFoYLdqMBVOLCmy8tUm8VFh0wLTrozXyQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Richard Linklater",
+            year: 1995,
+            cast: ["Ethan Hawke", "Julie Delpy"],
+            genre:"Romance"
+        },
+        {
+            name: "Whiplash",
+            poster: "https://upload.wikimedia.org/wikipedia/en/0/01/Whiplash_poster.jpg",
             rating: 8.5,
-            summary: "A timeless romantic drama set during World War II, showcasing love, sacrifice, and political intrigue in the Moroccan city of Casablanca."
+            summary: "A gripping drama about the intense relationship between a young jazz drummer and his abusive instructor at a prestigious music academy.",
+            glimpse: "https://imdb-video.media-imdb.com/vi4006456345/1434659607842-pgv4ql-1616202354600.mp4?Expires=1711958615&Signature=i3UXi8ONNabS~oCvsgZ42OItjg1Su6rLB0gYJVB3MYaO7ag3R6MYcFUryM35QldUoBCPE2u9lircBM9HHRSvIdQVnzA4bxdK48ySofU0fp9g-WIR~plrYTdej8JOQatGr5dMibmN1ejlto3-QskfyL03I4EW7Y6TCxvQOxG-WpVSsTlBRq2Zzu7eRWap3di0qAX2qFfOPqYS4brN7M~DbRupho9v1hePxluK6v57jdof-JgvNv3~FW-tHMASyVS6B-JSQRngSyVdPzm7i~h7UsSNV6VpS4x0M48acCBaTuMbrrIFyoqLe8QD~p91pBx~zDFnAlG6u35yDNCuzSygVg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Damien Chazelle",
+            year: 2014,
+            cast: ["Miles Teller", "J.K. Simmons"],
+            genre:"Drama"
+        },
+        {
+            name: "Babylon",
+            poster: "https://upload.wikimedia.org/wikipedia/en/d/db/Babylon_2022_poster.jpg",
+            rating: 6.5,
+            summary: "Set in 1980s London, 'Babylon' follows a young South London DJ as he navigates the music industry and racial tensions while pursuing his dreams of success.",
+            glimpse: "https://imdb-video.media-imdb.com/vi3270100249/1434659607842-pgv4ql-1671725960998.mp4?Expires=1711959282&Signature=OXi7wb5FUx5lu45Eo~OF0BF8shLMpjrXPl99zo3uAZQ6AHYbLYVovSK6GgVPaz2My-5Kd8HgcMYL-VDHRNItXxgkSV10WjDQ8KNXNA~z0zPNcIiVE4EYwPAXXHN5CB9px1mip~rovqIwzKh0RkwN9EWk3MwqtIP1EpZ77gbT-RQkTybQrqmoku4rCQjVCYCRFZojDsrSoC1A4SgcsoZf9qXDCwc2nNNr69b1J5IBUqjEKz1ppBVBzTDAvbv92OXHHpN13ydgHQQxXqDe~LTTlHYeMXzkah97QDOtuEhiBhi5dhNHUJPY06skX-21RKCLQaCdC4F3e4goVMeAA0x09Q__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Franco Rosso",
+            year: 1980,
+            cast: ["Brinsley Forde", "Karl Howman"],
+            genre:"Thriller"
+        },
+        {
+            name: "In Mood for Love",
+            poster: "https://upload.wikimedia.org/wikipedia/en/4/45/In_the_Mood_for_Love_movie.jpg",
+            rating: 8.1,
+            summary: "A visually stunning exploration of love, longing, and missed connections in 1960s Hong Kong, 'In the Mood for Love' is a masterpiece of Wong Kar Wai.",
+            glimpse: "https://imdb-video.media-imdb.com/vi738640153/1434659607842-pgv4ql-1609952560287.mp4?Expires=1711958691&Signature=ruNXqQ6-QtH574oB9ESKzwDHRWCcwGrA9WX8A~wyMPgcGLd2SMeINs-CDpi-QBxwcOslmKT32eZOilqn11cQxpd-50QtuOuS57VmiZmTH5h6O338XhoD0j1x6uCanNV4voC6k8ItzzxOeki5l3q5zgw18nIqDXXHdESaqSTXE3aB8R5QzI80fCPL0ARv~kEw87kDZozmsdMz8Wro3x8bIlombl54pA0ON4IQixzDzXWSr4XfpblgA-nU23vMY1FzTpK7Y03GGpIVjXrVAX4E08eQcsvdH4gbNelMUcdtID15FCy-PNlPxi2qrvyLaEuG0mkLmTRH8Rck~eek0xcOnQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Wong Kar Wai",
+            year: 2000,
+            cast: ["Tony Leung", "Maggie Cheung"],
+            genre: "Romance"
+        },
+        // Add Damien Chazelle movie
+        {
+            name: "La La Land",
+            poster: "https://upload.wikimedia.org/wikipedia/en/a/ab/La_La_Land_%28film%29.png",
+            rating: 8.0,
+            summary: "A modern musical that captures the bittersweet essence of chasing dreams in Los Angeles, 'La La Land' is a visually stunning and emotionally resonant film by Damien Chazelle.",
+            glimpse: "https://imdb-video.media-imdb.com/vi2514728473/1434659607842-pgv4ql-1478184782082.mp4?Expires=1711959367&Signature=pRQSvtx2T8fgAmVeVQO5DFTVKz645gZsmnD4dqJLu50xGmX1t7t28uTzSxJCIZ4h5jXVlVjcdkNipVEZqlR1W7FRsmbMPtv5Imgk4tH0c-DvP5rtb8WiwI99fe~SxGB~9wGDQ1olaZPGvDu~80sg2n4kOqYqIImqoIR~P-eltJTx35ttgD5R0kXyZHzf3E6vnkuau1kKI53Wb-ajHDIcc0jUffzXQIWzeww77pRaOrgwJpA2C1LLL1qNK7mxFI5KDhHSL~pQXhmOcKxhXlhAhPSSmVpXX-4CyK-8nnEEqG6x2TQYV5s-AysibLGuMWd99MNU~HmEwVVP8bVUGrmN8A__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Damien Chazelle",
+            year: 2016,
+            cast: ["Ryan Gosling", "Emma Stone"],
+            genre: "Romance"
         },
         
         {
-            name: "Pyaasa",
-            poster: "data:image/jpeg;base64,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",
+            name: "Once Upon a Time in Hollywood",
+            poster: "https://upload.wikimedia.org/wikipedia/en/a/a6/Once_Upon_a_Time_in_Hollywood_poster.png",
+            rating: 7.6,
+            summary: "Quentin Tarantino's ode to Hollywood's golden age, 'Once Upon a Time in Hollywood' intertwines the lives of a fading TV star and his stunt double with the Manson Family murders.",
+            glimpse: "https://imdb-video.media-imdb.com/vi1385741849/1434659607842-pgv4ql-1585091468875.mp4?Expires=1711958882&Signature=FC5Fp93-OsH06B6W4LmIZYhvfzsbyIUJPuUpinalnF~O69FrwLApv3Sra8kjeO5VNedaHujapaQAo0Ij7~bymJFCpzRhTw5Y-5u33Wc920rj8feSZGkE2dH912XFsDz~-KKkEgKFUFN86un6qpAQJPqkTGot1fvw9wyRgQUzTGsriI9sQPJ7gBptLhqJ5l9HLQD-iijgLjo7ZlfTzqR7cXOuzuYHk3nvH6Mw1VznJiFkCcXWdXdc27OnvL77SQr4NwO5boOWsJbK5JSDTI1zpgpCaf6NKkuosCyVoEIiHzBzrYbRFuretLWGCqCYN8imR5pwCojLnexU~mGxiUWwgw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Quentin Tarantino",
+            year: 2019,
+            cast: ["Leonardo DiCaprio", "Brad Pitt"],
+            genre:"Thriller"
+        },
+        // Add Vikramaditya Motwane movie
+        {
+            name: "Udaan",
+            poster: "https://upload.wikimedia.org/wikipedia/en/7/71/Udaan_Movie_Poster.jpg",
+            rating: 8.1,
+            summary: "A coming-of-age drama about a teenager's journey of self-discovery and rebellion against his authoritarian father, 'Udaan' is a powerful film by Vikramaditya Motwane.",
+            glimpse: "https://m.media-amazon.com/images/M/MV5BYzQxNzgxMmItOTc2Yi00OTg5LTk0MTUtOWQyMTYxZDRmMWM1XkEyXkFqcGdeQXVyODAzNzAwOTU@._V1_UY100_CR49,0,100,100_AL_.jpg",
+            director: "Vikramaditya Motwane",
+            year: 2010,
+            cast: ["Rajat Barmecha", "Ronit Roy"],
+            genre:"Drama"
+        },
+        {
+            name: "Masaan",
+            poster: "https://upload.wikimedia.org/wikipedia/en/1/1c/Masaan_poster.jpg",
+            rating: 8.1,
+            summary: "A powerful drama set in the holy city of Varanasi, 'Masaan' explores themes of love, loss, and redemption through the lives of its characters.",
+            glimpse: "https://imdb-video.media-imdb.com/vi3870078489/1434659607842-pgv4ql-1474019680493.mp4?Expires=1711959668&Signature=poIWmcMhbe23BOOWjLuhb4ThD93vY0AuUY2BlJlJYLXGATlCCPW6XeH~Prktcxr2R0IDRVZN5EDRgpJrHudw3xlHYi8plpPe5ox34TuEVGlp5c2-9iZKYJrsGD4wugzqt-x6vN78WGRHnRON6YGXTLIcuPUniaY8FugFgDP8Ui8U21StubqiWE673WEyPh6Jlcmv8JYYeee0b-BdpbOSipZ4iko6VvnwxX~5w5dA65TE-g7DEidRYdLAYRyctVLfiOF7BQhNYJJtUiq3UkHtEe0dkjVs99eiOwhaV7g7vKXtH20AFPBVw9n5mOYUYSxAcOQ-PZYJjujQ-iEAjClfHA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Neeraj Ghaywan",
+            year: 2015,
+            cast: ["Richa Chadha", "Vicky Kaushal"],
+            genre:"Thriller"
+        },
+        {
+            name: "Jab We Met",
+            poster: "https://upload.wikimedia.org/wikipedia/en/9/9f/Jab_We_Met_Poster.jpg",
+            rating: 7.9,
+            summary: "A romantic comedy about two strangers who meet on a train journey and embark on an adventurous and transformative road trip together.",
+            glimpse: "https://imdb-video.media-imdb.com/vi3972250393/1434659607842-pgv4ql-1531973379708.mp4?Expires=1711960458&Signature=ddMAEnYq2aNSfmVaT9zkDIwMwqCOj2th9Yr12Mi7ZKmjKQNS-R80Szi51fWVBYVK4kUMRjHLzUGDBD8go-Imumcn2-MPByS7A4lsXTjveypR0WYEu~bxST9y5~aM8DFVYMeMWRxRw-w-qKP~jIGMpIz0Seh-bU-ZFGLWmR4xwSR0iGcGMZqPxr-IUZu-iWZIyHAhTIjHh4bwhIDVprWcWzYPhHEE0k51Enzf8too1n6i9bZyKLHGryyAIfQwa7Da9PM8qUqhnWFJJ3381i7gOOxUNvd-o5QN~8mPer31IVTx3rReJRcx1G~YUn6QPR8iBjUUSw6TfenVt1EZySDJeA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Imtiaz Ali",
+            year: 2007,
+            cast: ["Shahid Kapoor", "Kareena Kapoor Khan"],
+            genre:"Romance"
+        },
+        {
+            name: "Sir",
+            poster: "https://upload.wikimedia.org/wikipedia/en/f/fc/Sir_film.jpg",
+            rating: 7.2,
+            
+            summary: "A tender romance between a wealthy young man and his live-in maid, 'Sir' explores the complexities of class divide and societal norms.",
+            glimpse: "https://imdb-video.media-imdb.com/vi1290190617/1434659607842-pgv4ql-1571978358640.mp4?Expires=1711959565&Signature=ZYFCAqXPdomFG5oHY7l4799-aPiGJqQoYck7YCorrv5S8AyF8lTtGCf7~RBCL0tW64YaQ6~VbZjVDTp6rDZyLS0c1Km-ZaDFMtSc4uec4FQTLQzIDNxNK4w2GW~tljpBt~L-tKD8WC6lUDbcLBzoDxIFUP4nm0NtY5pjBu72A7n3hu4nPDn-e1fk4pItoQQSyIm5JnAj-ktxK7xzhfk9om5KL7Y1TjvtxXvcyOXLqvzV-WHdXkkr4h656QXv4JHtQ85Hn1w~PqSJXZsOCv7WL5I3~2sm0d-vp~eVeVXAzJHdAQZItIvYuD7Sfh~XccMNzyKdfCySxM4ia08h8CAQsw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Rohena Gera",
+            year: 2020,
+            cast: ["Tillotama Shome", "Vivek Gomber"],
+            genre:"Romance"
+        },
+        {
+            name: "Chhichhore",
+            poster: "https://upload.wikimedia.org/wikipedia/en/3/3d/Chhichhore_Poster.jpg",
+            rating: 7.6,
+            summary: "A heartwarming tale about a group of college friends who reunite years later to support one of their own and reminisce about their unforgettable days together.",
+            glimpse: "https://imdb-video.media-imdb.com/vi1044495385/1434659607842-pgv4ql-1565457462731.mp4?Expires=1711959819&Signature=K-eWeoGglg~zEVL4KaAY3i0yvsfUCbXiwCVPE7HhVk9Rrl5UzbkOYHaB2hZI4m6qSKE-sJMEyNnV7E91PbHk6HcrHMXcYGw89naf7JD9YylmoLMbdWOnrW7CwabQrTfiMStNCzGfTfutCka29csflU~1nr~Pq2dgaKg62xOohDQv8JwcY48Kn9Fhv23a~7uHcLU6Cqrnt5cgtyyb09roia1-~NyE0umfMdclN8bgU1Sp5zX60yjNduEubgUKo8YaVIDHfKAK1zBZalMySMTeeF8zbw9gRmjRPXM~OpqGiHCeZNrDxBhixSXqPZxBYv18QS1l-m9Gex2p8~e7CobbeA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Nitesh Tiwari",
+            year: 2019,
+            cast: ["Sushant Singh Rajput", "Shraddha Kapoor"],
+            genre:"Drama"
+        },
+        
+        {
+            name: "Tanu Weds Manu 2",
+            poster: "https://upload.wikimedia.org/wikipedia/en/3/3f/Tanu_weds_Manu_poster.jpg",
+            rating: 7.5,
+            summary: "A quirky romantic comedy sequel that follows the tumultuous lives of Tanu and Manu, exploring love, marriage, and second chances.",
+            glimpse: "https://imdb-video.media-imdb.com/vi570603545/1434659607842-pgv4ql-1563509397955.mp4?Expires=1711959411&Signature=dQLVoi3cNU5QHl9R5i-881u9Jj8Oi1FAteiBpOqX-yctTmTqeuDWe~wqRKTLK4JGWUZ97IEZyUjW2oAvlQa4Thy9zBJWi7P-v42-ugjx2ILJToM5X2U0RKrgWzMfWw-tXrgRtyE-uTOqtQWhC34Mk0710KIInUXh7z8vgjczC45qIuyPZLKFopLzXisqwObzX2s1KkaEg6C5qjQ--OepsMWyKVnrv4td5fpYVZ8u1vPw2fRDCROaE4DyExyNttAs2wBVdCVslIw4pyMVuVNtSMl-rhNXneLpjOyYcMBxWVCg3a6T6dl~F5uSBZhk3Duv3RpuhE8~~~nTkc8gS73IMg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Aanand L. Rai",
+            year: 2015,
+            cast: ["Kangana Ranaut", "R. Madhavan"],
+            genre:"Drama"
+        },
+        {
+            name: "Peepli Live",
+            poster: "https://upload.wikimedia.org/wikipedia/en/5/55/Peeplilive.jpg",
+            rating: 7.5,
+            summary: "A satirical comedy-drama that sheds light on the media circus surrounding farmer suicides in rural India and the political exploitation of their plight.",
+            glimpse: "https://imdb-video.media-imdb.com/vi3254060569/1434659607842-pgv4ql-1616199399079.mp4?Expires=1711959977&Signature=i8EMfam2qQbuX-UdKG44YsbJMvEDhZ-ZagpCjWUawMHCqC6zF-G13N5P2wP6u8xGX5n6W01leAf8~M-bQHNyDRkJfOm-Oz6OF-uobnOIo9TTZw0nbf5GQB8gOyzE0oMmuMGea-2sKzcjG5HxKI-hcaPuOWbbiBYkOkBVoJbV~QzwEDvCc3uk4jt0GhHTwe2-fNJSmIbNELN-Chufn8vZ1RWAEJ6ymcRPHdqvbMn-wDzjLywRDEfAzNkv~cpYvqMiUqvzS-AfUSvvG0IoqVPuZCqVK7P0eHv7WdJBJIRVVWqey8p9e71ZEvOgTLhxI9RH3~JbBDGiy1vP5ZidpCJP~g__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Anusha Rizvi",
+            year: 2010,
+            cast: ["Omkar Das Manikpuri", "Raghubir Yadav"],
+            genre:"Drama"
+        },
+        {
+            name: "Casablanca",
+            poster: "https://m.media-amazon.com/images/I/81vQ31ZbomL._AC_UF1000,1000_QL80_.jpg",
             rating: 8.5,
-            summary: "Considered a masterpiece of Indian cinema, 'Pyaasa' tells the story of a struggling poet who finds solace and purpose amidst societal indifference and personal turmoil."
+            summary: "A timeless romantic drama set during World War II, showcasing love, sacrifice, and political intrigue in the Moroccan city of Casablanca.",
+            glimpse: "https://imdb-video.media-imdb.com/vi6095897/1434659607842-pgv4ql-1616202585787.mp4?Expires=1711960013&Signature=RWMXKMXa4f0N4eFnd780dFztx7NZ7Vj7PFbldbWuum~DdchZOeySa6sKAO8OwL6kwAeuH3PFWfcNFUwCA4YYMchLJGhgwE-asFhmNCdZYc5Mk7UNJyLeWBJ0N6rTRXPN9P~zfl2ajlJ-qYbspJ9KA6TkY~nvFBpnGc7noeO6yvGAY51orvMqTSKWHkcKaGded7JiiUnXHFGPDtw5NwQwlOu-Xhdv3E09rXxVgNVosjxM24JE7ueYFEyf4uuT6J9QFDAnY2xbGOwgQZ05KRkgvlJ~PMMC4-tjRYv4wWymLYbT9VBm47xmOWtgD-B~bj~P8kXS5fq7dQahy~A94dfElg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Michael Curtiz",
+            year: 1942,
+            cast: ["Humphrey Bogart", "Ingrid Bergman"],
+            genre:"Thriller"
+        },
+        {
+            name: "Pyaasa",
+            poster: "https://upload.wikimedia.org/wikipedia/en/9/93/Pyaasa_poster.jpg",
+            rating: 7,
+            summary: "Considered a masterpiece of Indian cinema, 'Pyaasa' tells the story of a struggling poet who finds solace and purpose amidst societal indifference and personal turmoil.",
+            glimpse: "https://imdb-video.media-imdb.com/vi3660102169/1434659607842-pgv4ql-1546584813367.mp4?Expires=1711952829&Signature=FooESFW9lkmKOS2zzhdRHNE5ZR31mj4~iIgnmjho6f7V2H1tGxJdi0Empa3Gcvcdxzxfzu62IYZ-5GzMMe3l37rOPXNjWu5SLXor4vU-Ejw0vLJdge0sifNmitTuJOUjSHd1YVZtu8jGPl5RVZGuxWWwxu1xeCenfNV20dOQVrckt76siD2bH30p8Lu64NA2vdQMtVzc9LW7RaRr~Zuxv25SP6BeVAoDHn8tir~0oKOPnvCi9fJZgMeckONmmDbOs7qVPr8jcy5Se6bRxvNuo1ojJ6~30rs4GsfNrBGcxPkno~JwWSpPlqL-pGbxnikx0GC30BkuIqyVKTUjeT3KcQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Guru Dutt",
+            year: 1957,
+            cast: ["Guru Dutt", "Waheeda Rehman"],
+            genre:"Classic"
         },
         {
             name: "Pather Panchali",
-            poster: "https://qph.cf2.quoracdn.net/main-qimg-d957d26bd8bbe706c51f4cdb7fc23d39-lq",
+            poster: "https://images.squarespace-cdn.com/content/v1/5befb3b84611a081dd003798/1618119957942-CX3XM1T6CCU4KPW0FNRK/Pather+Panchali+%5BA+Song+of+the+Little+Road+1955.jpg",
             rating: 8.6,
-            summary: "Regarded as one of the greatest films in world cinema, 'Pather Panchali' is a lyrical portrayal of childhood, poverty, and dreams in rural Bengal, directed by Satyajit Ray."
+            summary: "Regarded as one of the greatest films in world cinema, 'Pather Panchali' is a lyrical portrayal of childhood, poverty, and dreams in rural Bengal, directed by Satyajit Ray.",
+            glimpse: "https://imdb-video.media-imdb.com/vi3114774553/1401497881123-xszl4z-1430514845919.mp4?Expires=1711952609&Signature=lk5dKZIEn2BMShbg5kb9V3uBa6snqpOKdIbyN~JwVrQvXNzXxYs87yMPQkaKhEcbYZEWoA6OuRHrGZkXrnNbHw-~lHmjKXkfhkBFcur68rEmDzs2r03CnSFL-kliwe3jymq8wAmsV51Di~~WUDxO01xdCGi2KJCvKEVQtoKv4K2b1e4AdalI5DLUmzZ1MmKlvE3tYCW-MUmLns6I1DN3yr34dHvmvlsDEXucPMv-juSYIytBMEGdmIWiAiIRiqMG3UiRkHAo60~Y9SprWuiO3YJc4IAgkVdk-7kfvo7f~6cWkEc-HUjx4MqJjhnKvhYjaGDluuPKwNGe3pxT3BPajA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Satyajit Ray",
+            year: 1955,
+            cast: ["Kanu Banerjee", "Karuna Banerjee"],
+            genre:"Classic"
         },
         {
             name: "The Seventh Seal",
-            poster: "data:image/jpeg;base64,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",
+            poster: "https://upload.wikimedia.org/wikipedia/en/6/69/Seventhsealposter.jpg",
             rating: 6.8,
-            summary: "A landmark of Swedish cinema, 'The Seventh Seal' follows a medieval knight's existential crisis as he plays a game of chess with Death, exploring themes of faith"
+            summary: "A landmark of Swedish cinema, 'The Seventh Seal' follows a medieval knight's existential crisis as he plays a game of chess with Death, exploring themes of faith",
+            glimpse: "https://s3.us-west-2.amazonaws.com/files.catholicworldreport.com/2020/03/seventh-seal-1957-678x380.jpg",
+            director: "Ingmar Bergman",
+            year: 1957,
+            cast: ["Max von Sydow", "Bengt Ekerot"],
+            genre:"Classic"
         },
         {
             name: "Persona",
-            poster: "https://upload.wikimedia.org/wikipedia/en/0/08/Persona_Poster.jpg",
+            poster: "https://m.media-amazon.com/images/M/MV5BYmFlOTcxMWUtZTMzMi00NWIyLTkwOTEtNjIxNmViNzc2Yzc1XkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_FMjpg_UX1000_.jpg",
             rating: 6.6,
-            summary: "Directed by Ingmar Bergman, 'Persona' is an enigmatic psychological drama exploring the blurred boundaries between identity,reality and illusions"
+            summary: "Directed by Ingmar Bergman, 'Persona' is an enigmatic psychological drama exploring the blurred boundaries between identity,reality and illusions",
+            glimpse: "https://www.imdb.com/video/vi1884797977/?ref_=ext_shr_lnk",
+            director: "Ingmar Bergman",
+            year: 1966,
+            cast: ["Bibi Andersson", "Liv Ullmann"],
+            genre:"Thriller"
         },
         {
             name: "Citizen Kane",
             poster: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Citizen_Kane_poster%2C_1941_%28Style_B%2C_unrestored%29.jpg/330px-Citizen_Kane_poster%2C_1941_%28Style_B%2C_unrestored%29.jpg",
             rating: 8.3,
-            summary: "Regarded as one of the greatest films ever made, 'Citizen Kane' follows the life and legacy of a wealthy newspaper tycoon, exploring themes of power & corruption."
+            summary: "Regarded as one of the greatest films ever made, 'Citizen Kane' follows the life and legacy of a wealthy newspaper tycoon, exploring themes of power & corruption.",
+            glimpse: "https://imdb-video.media-imdb.com/vi568630553/1434659607842-pgv4ql-1616202584903.mp4?Expires=1711953358&Signature=ISMNhY95ou8LoqU2N4Lv0CVwBGlH3BpCTD1ozKm5VhtvRoYGUC6ZhnBNV6Y2AJ9Mf6iSlDRmuH1j2e0yO1VWF6YSV~FlGwSzB5uDDOGDeu9HrXqb1ph9t4i3SuUNXtbpzfVgXP4Dm3wOeTh0fx0IKFotDKnq~csnpDnwTwSBxnR6g1z2~~UIO4Fai5YkwJpNVqk3~2vsD9ykgU-JUwvUxP3z2jkUQx7PD9Rhxt3Js0T9GE7-1iWWMmo7VqUd8a0b5uCFtwkE5acDvrDUA9nuilFJlhpse33xygdBJTEe907jzMEOtNj9wZL2cLq4kbuTXgjhlwXJ3k9mrBDpunwr2g__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Orson Welles",
+            year: 1941,
+            cast: ["Orson Welles", "Joseph Cotten"],
+            genre: "Classic"
         },
         {
-            name: "Gone with the Wind",
+            name: "Gone with Wind",
             poster: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Poster_-_Gone_With_the_Wind_01.jpg/330px-Poster_-_Gone_With_the_Wind_01.jpg",
             rating: 8.1,
-            summary: "A sweeping epic set against the backdrop of the American Civil War and Reconstruction era, 'Gone with the Wind' portrays the tumultuous romance."
+            summary: "A sweeping epic set against the backdrop of the American Civil War and Reconstruction era, 'Gone with the Wind' portrays the tumultuous romance.",
+            glimpse: "https://imdb-video.media-imdb.com/vi581873433/1434659607842-pgv4ql-1563889724970.mp4?Expires=1711952839&Signature=ak28TrKMuwwzTdDQqyGVWrI-aiSlKDMIwXH8GhYUA5rO8lhgUBis7VN45AiU0gnhhro3MX1ncgvc43so8T~khcY7~hulbvrTSg~lkyxGZ8LdRCYA2viVEnzavX5g4B8Tfm51beAlk20HiDDH-vmWflwfOGsNRu3Hx50gu3IKtT82bLOkqUhacP41MOEdtOxgkHM82qfQMQRGVE~~Q~IEshKq2QOruqCVAcJtbfGOpx8k3kCdBB5DKZ3lfSkc9i-jDmUJYQF88fP38Cl5mRndhibC0EiV8ivlOsQrw-lUPceL-FQSKpN23HNqVixExUFarbhbCef43fQNV8kbtzyHJg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Victor Fleming",
+            year: 1939,
+            cast: ["Clark Gable", "Vivien Leigh"],
+            genre:"Romance"
         },
         {
             name: "Sholay",
             poster: "https://upload.wikimedia.org/wikipedia/en/5/52/Sholay-poster.jpg",
             rating: 8.2,
-            summary: "An iconic Bollywood classic, 'Sholay' is a tale of friendship, revenge, and redemption set in the lawless village of Ramgarh, featuring memorable characters."
+            summary: "An iconic Bollywood classic, 'Sholay' is a tale of friendship, revenge, and redemption set in the lawless village of Ramgarh, featuring memorable characters.",
+            glimpse: "https://imdb-video.media-imdb.com/vi214219545/1434659607842-pgv4ql-1531976939303.mp4?Expires=1711953107&Signature=B~ELYLzENvC7NF2RIZgF2YoB82kKvmq1bkZ7x44oefb7tpV6hvqw-ocKgop85qnu3f8yN7JcQu575~vlPJZ~5Xh998gQ6zhLtJ6EkHKy8PP1OWVmHMh~fEJbpsq-QzWFMYshwDwS33gnjh2vcpNb00UjX1~ul-sS8OwTREWKO89iLOY2CsQT0~SGNJPl0p8i-s5SQ9wWDOZ7byEp-Bz4BfVtymQxKa5xIH3PZ9KFF-UZHdNXnE74TAuGgcaQlisVIpTcmhRnxQajFleLWlhcWWlY6qQV1xsBS~4PVVoCt8~vrwu8BL06apgWVlJB1eT7eex5AwH3Twcsj0AY78OU0A__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Ramesh Sippy",
+            year: 1975,
+            cast: ["Dharmendra", "Amitabh Bachchan"],
+            genre:"Classic"
         },
         {
             name: "La Dolce Vita",
             poster: "https://upload.wikimedia.org/wikipedia/en/c/c1/La_Dolce_Vita_%281960_film%29_coverart.jpg",
             rating: 8.0,
-            summary: "Federico Fellini's masterpiece, 'La Dolce Vita', is a satirical take on the hedonistic lifestyles of the Roman elite, capturing the emptiness beneath the glamour of society."
+            summary: "Federico Fellini's masterpiece, 'La Dolce Vita', is a satirical take on the hedonistic lifestyles of the Roman elite, capturing the emptiness beneath the glamour of society.",
+            glimpse: "https://imdb-video.media-imdb.com/vi609599257/1434659607842-pgv4ql-1580492491768.mp4?Expires=1711953601&Signature=TGSDK-DvfJbKm3-krGAt5ikuGNJ6cJN5XTXGX-4negCQdCUOc6~YA9pGDqTl1AOFEfOuACVfGPipaMFuV0vzmx8Mvm~EBMko9~28wfpJOetm70npFdC6XpFS3RGeLyGrYCrKABudtWvh0hzT7bLQRfdr8lYP8YV9DlYJZj4o8aPpB9kXKyXFGqU4HTDgXYV5mQH0ikH6Mw34rhhUCXi-ZnfXTirCDopukBxnv7fdUNVxBkcsUHaPiNuvZ38488TClNeqAyimRwqmqKnrcZvsAjUsN-Oivn5hdErxItNe22fkv8LmnspRgoz91OMTvzLm5j1XxUDaxtG9dbWWTpvaeg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Federico Fellini",
+            year: 1960,
+            cast: ["Marcello Mastroianni", "Anita Ekberg"],
+            genre:"Classic"
         },
         {
             name: "Mahanagar",
             poster: "https://upload.wikimedia.org/wikipedia/en/1/18/Mahanagar2.jpg",
             rating: 8.2,
-            summary: "Directed by Satyajit Ray, 'Mahanagar' (The Big City) is a poignant exploration of a middle-class woman's journey towards self-discovery and empowerment in 1950s."
-        },
-        {
-            name: "Bhuvan Shome",
-            poster: "https://upload.wikimedia.org/wikipedia/en/f/fe/Bhuvan_Shome.jpg",
-            rating: 7.9,
-            summary: "Directed by Mrinal Sen, 'Bhuvan Shome' is a minimalist masterpiece that tells the story of a lonely bureaucrat's transformative encounter with a young woman."
-        },
-        {
-            name: "Charulata",
-            poster: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e7/CharulataG.jpg/220px-CharulataG.jpg",
-            rating: 8.4,
-            summary: "Directed by Satyajit Ray, 'Charulata' is a masterful depiction of loneliness, desire, and societal constraints as seen through the eyes of a lonely housewife in 19th-century."
+            summary: "Directed by Satyajit Ray, 'Mahanagar' (The Big City) explores the evolving role of women in Indian society through the journey of a housewife who takes up a job.",
+            glimpse: "https://imdb-video.media-imdb.com/vi1222297881/1434659607842-pgv4ql-1602450247585.mp4?Expires=1711953580&Signature=Fmcx4uJflqFT0ymqqIK1l71MCscSi1M2e7uGUNaxtEfoUz1X-wjICPH-9hDNwpzumGrVbtfUoXop3U-MK3Y-UkOwwfwM6qP-nk~i7-eAj6b4P3HxNVaRPH-qFmKxfsY3f9s29KOZR-qzQO5mN-9qFy~3r-0D1IXBcVLs8hDx2kTDdYZKz6pykCI5nTWLu~PJrMbA2F4~m8VHy1SBjwC3UKPXyBuD0pS6eYJAKqtoODvHcASp4n1FgfIVzBjck1RZf7zn5iR8Gm7B8TVKfweTFMTzR-HN3UDZozb8RK9PAAm5mLUdSRoHbwLtj96Wrf-qhc5WdewpZmdWmNJfQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+            director: "Satyajit Ray",
+            year: 1963,
+            cast: ["Madhabi Mukherjee", "Anil Chatterjee"],
+            genre:"Drama"
         }
     ];
-    return (
-        <>
-        <div className="cards-container">
-            {movie.map((element,index) => {
-              return  <MovieCard key={index} {...element} />
-            })}
-            </div>
-        </>
-    )
-}
-export default MovieCardMap;
+   
+    const genres = ["Drama", "Thriller", "Classic", "Romance"];
+    const filteredByGenre = [];
+    
+
+    genres.forEach(genre => {
+        filteredByGenre.push(movie.filter(film => film.genre === genre));
+    });
+
+
+        return (
+            <>
+                
+                {filteredByGenre.map((genreMovies, genreIndex) => (
+                    
+                    <div key={genreIndex} className="cards-container">
+                     
+                        
+                        {genreMovies.map((element, index) => (
+                           
+                            <MovieCard key={index} {...element} />
+                        ))}
+                        </div>
+                    
+                ))}
+            
+            </>
+        )
+    }
+
+ export default MovieCardMap;
