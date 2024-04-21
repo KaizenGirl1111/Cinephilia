@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import ReactPlayer from 'react-player'
-function Modal({ summary, name,glimpse,genre,cast,year,director}) {
+import {useNavigate } from 'react-router-dom'
+function Modal({ summary, name,glimpse,genre,cast,year,director,idNo}) {
     const [closeBtn, setCloseBtn] = useState(false);
-
+    console.log("This is id",idNo)
     const toggleCloseBtn = () => {
         setCloseBtn(!closeBtn);
     };
@@ -43,13 +44,14 @@ function Modal({ summary, name,glimpse,genre,cast,year,director}) {
         textDecoration: "underline",
         cursor: "pointer",
     };
- 
+     const navigate = useNavigate()
     return (
         <>
             {!closeBtn && (
                 <div style={style2}>
                     <div style={style1}>
-                        <ReactPlayer url={glimpse} controls={true} width="100%" style={{ borderBottom: "5px solid rgba:(0,0,0,0,5)" }} />
+                          <ReactPlayer url={glimpse} controls={true} width="100%" style={{ borderBottom: "5px solid rgba(0,0,0,0.5)" }} /> 
+                 
                         <p style={style0} onClick={toggleCloseBtn}>Close</p>
                        
                         <h3 className="movieName">{name}</h3>
@@ -62,7 +64,7 @@ function Modal({ summary, name,glimpse,genre,cast,year,director}) {
                             }}> Directed by: {director}</p>
                         </span>
                         <p className="summary">{summary}</p>
-                        
+                        <button onClick={() => { navigate(`/movie/${idNo}`) }}>More details</button>
                     </div>
                 </div>
             )}

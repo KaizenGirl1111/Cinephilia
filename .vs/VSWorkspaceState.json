@@ -4,8 +4,10 @@
     "\\assets",
     "\\public",
     "\\src",
-    "\\src\\Components"
+    "\\src\\assets",
+    "\\src\\Components",
+    "\\src\\utils"
   ],
-  "SelectedNode": "\\src\\Components\\AddMovieForm.jsx",
+  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }

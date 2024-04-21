@@ -16,27 +16,28 @@ function LikeDislike() {
    
 
     const myStyle1 = {
-        marginRight: "10px",
-        marginLeft:"7px",
-        fontSize: windowWidth<=768?"0.7rem":"0.5rem",
+        marginRight: "0.1rem", // 10px converted to rem
+        marginLeft: "0.07rem", // 7px converted to rem
+        fontSize: window.innerWidth <= 500 ? "0.4rem !important" : window.innerWidth <= 900 ? "2rem" : "0.7rem",
         fontFamily: "system-ui",
-        borderRadius: "8%",
+        borderRadius: "0.8rem", // 8% converted to rem
         textAlign: "center",
-        padding: "3px 5px 3px 5px",
+        padding: "0.3rem 0.5rem 0.3rem 0.5rem", // 3px 5px 3px 5px converted to rem
         backgroundColor: "#393e46", // Change to a darker green
         color: "white" // Change text color to white for contrast
     };
 
     const myStyle2 = {
-        marginLeft: "5px",
-        fontSize: windowWidth <= 768 ? "0.7rem" : "0.5rem",
+        marginLeft: "0.05rem", // 5px converted to rem
+        fontSize: window.innerWidth <= 500 ? "0.4rem !important" : window.innerWidth <= 900 ? "2rem" : "0.7rem",
         fontFamily: "system-ui",
-        borderRadius: "8%",
+        borderRadius: "0.8rem", // 8% converted to rem
         textAlign: "center",
-        padding: "3px 5px 3px 5px",
+        padding: "0.3rem 0.5rem 0.3rem 0.5rem", // 3px 5px 3px 5px converted to rem
         backgroundColor: "#393e46", // Change to a darker red
         color: "white" // Change text color to white for contrast
     };
+
     return (
         <>
             <br />

@@ -1,18 +1,20 @@
 ﻿import LikeDislike from './LikeDislike.jsx'
 import { useState } from 'react'
-import Modal from './Modal'; // Import your Modal component
+import Modal from './Modal.jsx'
 import ReactDOM from 'react-dom'
 
 
-function MovieCard({ name, poster, rating, summary,glimpse,director,year,cast,genre}) {
+function MovieCard({ name, poster, rating, summary, glimpse, director, year, cast, genre, editBtn, deleteBtn, idNo }, props) { 
+    console.log("Movie details ", props)
     const [watchListAdded, setWatchListAdded] = useState(false)
+    console.log(idNo)
     const addToList = () => {
         (watchListAdded === true) ? setWatchListAdded(false) : setWatchListAdded(true)
     }
     let ratingStyle = {
         color:  rating >8?"green":"darkred",
         fontFamily:"Trebuchet MS",
-        fontSize: "15px"
+        fontSize: window.innerWidth <= 500 ? "0.4rem !important" : window.innerWidth <= 900 ? "2rem" : "0.7rem",
 
     }
     let btnPadding = {
@@ -21,7 +23,7 @@ function MovieCard({ name, poster, rating, summary,glimpse,director,year,cast,ge
     let listBtn = {
         backgroundColor: "#393e46",
         fontFamily: "Trebuchet MS",
-        fontSize: "0.6rem",
+        fontSize: window.innerWidth <= 500 ? "0.4rem !important" : window.innerWidth <= 900 ? "2rem" : "0.7rem",
         color: "white",
         padding: "2px 2px 2px 2px",
         float:"right"
@@ -29,10 +31,12 @@ function MovieCard({ name, poster, rating, summary,glimpse,director,year,cast,ge
     let sumBtn = {
         backgroundColor: "#29465B",
         fontFamily: "Trebuchet MS",
-        fontSize: "0.6rem",
+        fontSize: window.innerWidth <= 500 ? "0.4rem !important" : window.innerWidth <= 900 ? "2rem" : "0.7rem",
         color: "white",
         float: "right",
-        borderRadius: "35%",
+        width: "30px",
+        height: "30px",
+        borderRadius: "50%",
         padding:"0.3rem"
     }
     const [summaryBtn, setSummaryBtn] = useState(false)
@@ -44,6 +48,9 @@ function MovieCard({ name, poster, rating, summary,glimpse,director,year,cast,ge
     const toggleModal = () => {
         setShowModal(!showModal)
     }
+    const title = {
+        fontSize: window.innerWidth <= 500 ? "0.4rem !important" : window.innerWidth <= 900 ? "2rem" : "0.7rem",
+    }
     return (
         <>
             <div className="movie-card">
@@ -51,7 +58,7 @@ function MovieCard({ name, poster, rating, summary,glimpse,director,year,cast,ge
                 <img className="poster" alt="" src={poster} />
                 <div>
                     
-                        <h3 className="movieName">{name}
+                    <h3 className="movieName" style={title}> {name}
                         <button style={listBtn} onClick={addToList}>{watchListAdded ? '✔️' : '➕'}</button></h3>
                       
                  
@@ -60,8 +67,9 @@ function MovieCard({ name, poster, rating, summary,glimpse,director,year,cast,ge
                     <LikeDislike />
                     <button onClick={summaryFunc} style={sumBtn}>{summaryBtn ? '/\\' : '\\/'}</button>
 
-                    {summaryBtn && <Modal name={name} summary={summary} glimpse={glimpse} director={director} year={year} cast={cast} genre={genre} />}
-                    
+                    {summaryBtn && <Modal name={name} summary={summary} glimpse={glimpse} genre={genre} cast={cast} year={year} director={director} idNo={idNo} />}
+                    {editBtn}
+                    {deleteBtn}
                     </div>
                    
              </div>

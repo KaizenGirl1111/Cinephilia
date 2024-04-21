@@ -11,12 +11,12 @@ body {
     flex-direction:column;
 }
 .movie-card {
-    height: 70vh;
-    width: 20vw;
+    height: 55vh;
+    width: 23vw;
     flex: 0 0 auto;
-    margin: 10vh 2rem;
+    margin: 3.3vh 0.7rem;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-      
+    border-radius: 3%;
     background-color: #222831;
     transition: box-shadow 0.3s ease-in;
 }
@@ -28,10 +28,10 @@ body {
     }
 .cards-container {
     display: flex;
-    margin-bottom: 10vh;
+    margin-bottom: 0.5vh;
     overflow-x: auto;
     align-items: start;
-    margin-top: 10vh;
+    margin-top: 0.7vh;
 }
     /* For Webkit-based browsers (Chrome, Safari, newer versions of Opera) */
     .cards-container::-webkit-scrollbar {
@@ -45,7 +45,7 @@ body {
 
 .poster{
     
-    height:70%;
+    height:60%;
     width:100%;
   
 }
@@ -53,6 +53,7 @@ body {
 .movieName {
     color: white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size:1rem !important;
     
 }
 
@@ -66,13 +67,14 @@ body {
 
 @media only screen and (max-width: 768px) and (min-width:600px) {
     .movie-card {
-        height: 70vh;
-        width: 40vw;
+        height:65vh;
+        width: 35vw;
         flex: 0 0 auto;
-        margin: 10vh 2rem;
+        margin: 4vh 2rem;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         background-color: #222831;
         transition: box-shadow 0.3s ease-in;
+        border-radius:5%;
     }
 
         .movie-card:hover {
@@ -81,9 +83,9 @@ body {
         }
     .cards-container {
         display: flex;
-        margin-bottom: 10vh;
+        margin-bottom: 3vh;
         overflow-x: auto;
-        margin-top: 10vh;
+        margin-top: 3vh;
     }
     .poster {
         height: 70%;
@@ -94,6 +96,7 @@ body {
     .movieName {
         color: white;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 0.5rem !important;
     }
 
     .summary {
@@ -106,13 +109,14 @@ body {
 
 @media only screen and (min-width:768px) and (max-width:992px) {
     .movie-card {
-        height: 70vh;
-        width: 90vw;
+        height:60vh;
+        width:95vw;
         flex: 0 0 auto;
-        margin: 10vh 2rem;
+        margin: 4vh 1rem;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         background-color: #222831;
         transition: box-shadow 0.3s ease-in;
+        border-radius:5%;
     }
 
         .movie-card:hover {
@@ -122,9 +126,9 @@ body {
 
     .cards-container {
         display: flex;
-        margin-bottom: 10vh;
+        margin-bottom: 3vh;
         overflow-x: auto;
-        margin-top: 10vh;
+        margin-top: 3vh;
     }
 
     .poster {
@@ -135,8 +139,8 @@ body {
     .movieName {
         color: white;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 0.7rem !important;
     }
-
     .summary {
         color: white;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -151,12 +155,12 @@ body {
 
 }
 
-@media only screen and (max-width:600px) and (min-width:200px){
+@media only screen and (max-width:600px) and (min-width:200px) {
     .movie-card {
-        height: 60vh;
+        height: 50vh;
         width: 90vw;
         flex: 0 0 auto;
-        margin: 10vh 5vw;
+        margin: 4vh 5vw;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         background-color: #222831;
         transition: box-shadow 0.3s ease-in;
@@ -169,30 +173,42 @@ body {
 
     .cards-container {
         display: flex;
-        margin-bottom: 10vh;
+        margin-bottom: 3vh;
         overflow-x: auto;
-        margin-top: 10vh;
+        margin-top: 3vh;
     }
 
     .poster {
-        height: 70%;
+        height: 60%;
         width: 100%;
     }
 
-.movieName {
-    color: white;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-.summary {
-    color: white;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    padding-top: 6px;
-}
+    .movieName {
+        color: white;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 0.7rem !important;
+    }
+    .summary {
+        color: white;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        padding-top: 6px;
+    }
     /* For Webkit-based browsers (Chrome, Safari, newer versions of Opera) */
     .cards-container::-webkit-scrollbar {
         display: none;
     }
 
-   
-}
+    .cover {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        position:relative;
+        width:80%;
+        height:80%;
+        margin:2vh 2vw 2vh 2vw;
+    }
+    import 'bootstrap/dist/css/bootstrap.min.css';
+
