@@ -3,8 +3,9 @@ import { useState } from "react"
 import GiphyEmbed from './GiphyEmbed.jsx'
 import Navigation from './Navigation.jsx'
 import GiphyEmbedWithDynamicImage from './GiphyEmbedWithDynamicImage.jsx'
+import Footer from './Footer.jsx'
 
-function Romance({ movieList, setMovieList }) {
+function Romance({ movieList, setMovieList,cartValue,setCartValue }) {
 
 
     {/* console.log(movieList) */ }
@@ -27,12 +28,12 @@ function Romance({ movieList, setMovieList }) {
 
                     {filteredByGenre.map((element, index) => (
 
-                        <MovieCard key={index} {...element} editBtn={<button>Edit</button>} deleteBtn={<button>Delete</button>} />
+                        <MovieCard key={index} {...element} editBtn={<button>Edit</button>} deleteBtn={<button>Delete</button>} cartValue={cartValue} setCartValue={setCartValue} />
                     ))}
                 </div>
 
             }
-
+        
         </>
     )
 }

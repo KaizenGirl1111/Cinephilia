@@ -7,8 +7,9 @@ import Thriller from './Thriller.jsx'
 import Drama from './Drama.jsx'
 import Navigation from './Navigation.jsx'
 import GiphyEmbedWithDynamicImage from './GiphyEmbedWithDynamicImage.jsx'
-function MovieCardMap({movieList,setMovieList }) {
-
+import Footer from './Footer.jsx'
+function MovieCardMap({movieList,setMovieList,cartValue,setCartValue }) {
+    
     {/* console.log(movieList) */ }
     const genres = ["Drama", "Thriller", "Classic", "Romance"];
      const filteredByGenre = [];
@@ -35,12 +36,13 @@ function MovieCardMap({movieList,setMovieList }) {
                     
                 ))}
             */}
-                <Navigation />
+              
            
-                <Drama movieList={movieList} setMovieList={setMovieList}/>
-                <Thriller movieList={movieList} setMovieList={setMovieList} />
-                <Classic movieList={movieList} setMovieList={setMovieList} />
-                <Romance movieList={movieList} setMovieList={setMovieList} />
+                <Drama movieList={movieList} setMovieList={setMovieList} cartValue={cartValue} setCartValue={setCartValue} />
+                <Thriller movieList={movieList} setMovieList={setMovieList} cartValue={cartValue} setCartValue={setCartValue} />
+                <Classic movieList={movieList} setMovieList={setMovieList} cartValue={cartValue} setCartValue={setCartValue} />
+                <Romance movieList={movieList} setMovieList={setMovieList} cartValue={cartValue} setCartValue={setCartValue} />
+                <Footer/>
             </>
         )
     }

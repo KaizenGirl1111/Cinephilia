@@ -4,7 +4,7 @@ import GiphyEmbed from './GiphyEmbed.jsx'
 import Navigation from './Navigation.jsx'
 import GiphyEmbedWithDynamicImage from './GiphyEmbedWithDynamicImage.jsx'
 
-function Drama({ movieList, setMovieList }) {
+function Drama({ movieList, setMovieList,cartValue,setCartValue }) {
 
 
     {/* console.log(movieList) */ }
@@ -28,7 +28,7 @@ function Drama({ movieList, setMovieList }) {
 
                     {filteredByGenre.map((element, index) => (
 
-                        <MovieCard key={index} {...element} editBtn={<button>Edit</button>} deleteBtn={<button>Delete</button>} />
+                        <MovieCard key={index} {...element} editBtn={<button>Edit</button>} deleteBtn={<button>Delete</button>} cartValue={cartValue} setCartValue={setCartValue} />
                     ))}
                 </div>
 

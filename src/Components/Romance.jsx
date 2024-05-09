@@ -3,32 +3,29 @@ import { useState } from "react"
 import {useEffect } from 'react'
 import Navigation from './Navigation.jsx'
 import GiphyEmbedWithDynamicImage from './GiphyEmbedWithDynamicImage.jsx'
-
-function Romance({ movieList, setMovieList }) {
-   const  [romanceArray,setRomanceArray] = useState([])
-
+//import {ThemeContext } from '../utils/ThemeContext.js'
+import { useContext } from 'react'
+import ThemeContext from '../utils/ThemeContext.js'
+function Romance({ movieList, setMovieList,cartValue,setCartValue }) {
     {/* console.log(movieList) */ }
     const genres = ["Drama", "Thriller", "Classic", "Romance"];
- 
+   // const [theme,setTheme] = useContext(ThemeContext)
+   // console.log(theme)
+    const [theme, setTheme] = useContext(ThemeContext)
+    console.log("theme ",theme)
+    const filteredByGenre = movieList.filter(film => {
+        const data = film.genre === "Romance"
+        return data
+    })
 
-    
 
-    let filteredByGenre
-     async function test() {
-        filteredByGenre = movieList.filter(film => film.genre === "Romance")
-        if (!filteredByGenre) {
-           await setRomanceArray(filteredByGenre)
-        }
-        console.log(romanceArray)
-        return filteredByGenre
-    }
+    console.log("test")
 
-    console.log(romanceArray)
     return (
         <>
     
             <div style={{ paddingTop: "2rem" }}>
-                <h1 style={{ color: "white", fontFamily: "URW Chancery L, cursive" }}>ROMANCE</h1>
+                <h1 style={{ fontFamily: "URW Chancery L, cursive" }}>ROMANCE</h1>
             </div>
             {
 
@@ -37,7 +34,7 @@ function Romance({ movieList, setMovieList }) {
 
                     {filteredByGenre.map((element, index) => (
 
-                        <MovieCard key={index} {...element} editBtn={<button>Edit</button>} deleteBtn={<button>Delete</button>} idNo={index} movie={romanceArray} />
+                        <MovieCard key={index} {...element} editBtn={<button>Edit</button>} deleteBtn={<button>Delete</button>} idNo={index} cartValue={cartValue} setCartValue={setCartValue}  />
                     ))}
                 </div>
 

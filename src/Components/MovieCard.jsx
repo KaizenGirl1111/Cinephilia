@@ -2,12 +2,17 @@
 import { useState } from 'react'
 import Modal from './Modal.jsx'
 import ReactDOM from 'react-dom'
+import Navigation from './Navigation.jsx'
 
+import CartContext from '../utils/CartContext.js'
+import {useContext } from 'react'
+function MovieCard({ name, poster, rating, summary, glimpse, director, year, cast, genre, editBtn, deleteBtn, idNo,cartValue,setCartValue}) { 
+    const [cxtCartValue, setCxtCartValue] = useContext(CartContext)
 
-function MovieCard({ name, poster, rating, summary, glimpse, director, year, cast, genre, editBtn, deleteBtn, idNo }, props) { 
-    console.log("Movie details ", props)
+     console.log("cxt",cxtCartValue)
     const [watchListAdded, setWatchListAdded] = useState(false)
     console.log(idNo)
+    console.log(cartValue,setCartValue)
     const addToList = () => {
         (watchListAdded === true) ? setWatchListAdded(false) : setWatchListAdded(true)
     }
@@ -67,9 +72,11 @@ function MovieCard({ name, poster, rating, summary, glimpse, director, year, cas
                     <LikeDislike />
                     <button onClick={summaryFunc} style={sumBtn}>{summaryBtn ? '/\\' : '\\/'}</button>
 
-                    {summaryBtn && <Modal name={name} summary={summary} glimpse={glimpse} genre={genre} cast={cast} year={year} director={director} idNo={idNo} />}
+                    {summaryBtn && <Modal name={name} summary={summary} glimpse={glimpse} genre={genre} cast={cast} year={year} director={director} idNo={idNo}  />}
                     {editBtn}
                     {deleteBtn}
+                    <button onClick={() => setCartValue(cartValue + 1)}>❄️</button>
+                    <button onClick={() => setCxtCartValue(cxtCartValue+1) }>cxtCart</button>
                     </div>
                    
              </div>

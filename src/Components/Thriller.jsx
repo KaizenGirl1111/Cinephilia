@@ -3,7 +3,7 @@ import { useState } from "react"
 import Navigation from './Navigation.jsx'
 import GiphyEmbedWithDynamicImage from './GiphyEmbedWithDynamicImage.jsx'
 
-function Thriller({movieList, setMovieList }) { 
+function Thriller({movieList, setMovieList,cartValue,setCartValue }) { 
 
     {/* console.log(movieList) */ }
     const genres = ["Drama", "Thriller", "Classic", "Romance"];
@@ -27,7 +27,7 @@ function Thriller({movieList, setMovieList }) {
 
                     {filteredByGenre.map((element, index) => (
 
-                        <MovieCard key={index} {...element} editBtn={<button>Edit</button>} deleteBtn={<button>Delete</button>} />
+                        <MovieCard key={index} {...element} editBtn={<button>Edit</button>} deleteBtn={<button>Delete</button>} cartValue={cartValue} setCartValue={setCartValue} />
                    ))}
                 </div>
 

@@ -1,0 +1,17 @@
+1. navigation bar not responsive
+2. icon for dropdown not found
+3. edit delete ,cart button design
+4. routing using useLocation(like done in romance)
+5. useContext for cart 
+6. Amor de cinema not visible 
+7. Design footer(and update in other pages)
+
+
+how to create context - 
+1. create context js file-> createContext() method. Export this file 
+2.  declare state variable wrt context 
+3.  Provide this context to all components in App.jsx (<ContextName.Provider></ContextName.Provider> till end of components) and import ContextName (should be same name as createContext file)
+4. set value props for <ContextName.Provider> with the state variable 
+5. using useContext we will access props passed to provider const [cxtCartValue, setCxtCartValue] = useContext(CartContext)
+6. by events you can update cxtCartValue using setCxtCartValue
+7. Updated value will be stored in cxtCartValue

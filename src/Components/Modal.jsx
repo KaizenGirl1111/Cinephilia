@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ReactPlayer from 'react-player'
 import {useNavigate } from 'react-router-dom'
-function Modal({ summary, name,glimpse,genre,cast,year,director,idNo}) {
+function Modal({ summary, name,glimpse,genre,cast,year,director,idNo,filteredByGenre}) {
     const [closeBtn, setCloseBtn] = useState(false);
     console.log("This is id",idNo)
     const toggleCloseBtn = () => {
