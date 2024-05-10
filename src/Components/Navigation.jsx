@@ -4,6 +4,7 @@ import { useState } from 'react'
 import React, { useContext } from 'react'
 import CartContext from '../utils/CartContext.js'
 import ThemeContext from '../utils/ThemeContext.js'
+import Button from '@mui/material/Button';
 function Navigation({ cartValue, setCartValue }) {
     const [cxtCartValue, setCxtCartValue] = useContext(CartContext)
     const [theme, setTheme] = useContext(ThemeContext)
@@ -61,12 +62,18 @@ function Navigation({ cartValue, setCartValue }) {
                 <div style={space}><Link style={link} to="/romance">ROMANCE</Link></div>
                 <div style={space}><Link style={link} to="/classic">CLASSIC</Link></div>
                     <div style={space}><Link style={link} to="/addmovie">CONTRIBUTE</Link></div>
-                    <button style={styles} onClick={() => {
+                    <Button variant="contained" style={styles} onClick={() => {
                         setTheme({
                             ...theme, status: !theme.status,
                             DarkBtn: theme.DarkBtn === "Light 💡" ? "Dark 🌙" : "Light 💡"
                         })
-                    }}> { theme.DarkBtn } </button>
+                    }}> {theme.DarkBtn}</Button>
+                    {/* <button style={styles} onClick={() => {
+                        setTheme({
+                            ...theme, status: !theme.status,
+                            DarkBtn: theme.DarkBtn === "Light 💡" ? "Dark 🌙" : "Light 💡"
+                        })
+                    }}> { theme.DarkBtn } </button> */}
                     {/*  <div style={space}>{cartValue}🛒</div> */}
                     <div style={space }>
                         🛒{cxtCartValue}

@@ -1,7 +1,7 @@
 ﻿
 import './App.css'
 
-import AddMovieFom from './Components/AddMovieForm.jsx'
+import AddMovieMUI from './Components/AddMovieMUI.jsx'
 import { useState } from 'react'
 import { Navigate, Routes, Route } from 'react-router-dom'
 import { movie } from './utils/constant.jsx'
@@ -50,7 +50,7 @@ function App() {
           <Route path='/romance' element={<Romance movieList={movieList} setMovieList={setMovieList} />} />
               <Route path='/' element={<MovieCardMap movieList={movieList} setMovieList={setMovieList} cartValue={cartValue} setCartValue={setCartValue} />} />
         
-              <Route path='/addmovie' element={<AddMovieFom movieList={movieList} setMovieList={setMovieList} />} />
+              <Route path='/addmovie' element={<AddMovieMUI movieList={movieList} setMovieList={setMovieList} />} />
               <Route path='/movie/:idNo' element={<FullInfoScreen />} />
               <Route path='/404' element={<Page404 />} />
           
