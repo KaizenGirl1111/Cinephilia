@@ -68,8 +68,11 @@ function AddMovieMUI({movieList,setMovieList }) {
                 multiline
                 rows={4}
                 
-                variant="standard"></TextField></div>
-                <Button variant="contained" onClick={showInConsole} sx={{ width: "80%", marginTop:"1rem",padding: "0.5rem", borderRadius: "5px", cursor: "pointer" } }>Submit</Button>
+                    variant="standard"></TextField></div>
+                <div>
+                    <TextField id="standard-basic" label="movie Poster Link" variant="standard" onChange={(e) => { setMoviePoster(e.target.value) }} sx={{ width: "100%" }} />
+                </div>
+                <Button variant="contained" onClick={showInConsole} sx={{ width: "80%", marginTop:"1rem",padding: "0.5rem", borderRadius: "5px", cursor: "pointer",marginLeft:"8%"} }>Submit</Button>
             </div>
         </Box>      
        

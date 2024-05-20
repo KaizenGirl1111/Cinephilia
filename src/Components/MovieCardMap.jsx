@@ -9,7 +9,17 @@ import Navigation from './Navigation.jsx'
 import GiphyEmbedWithDynamicImage from './GiphyEmbedWithDynamicImage.jsx'
 import Footer from './Footer.jsx'
 function MovieCardMap({movieList,setMovieList,cartValue,setCartValue }) {
-    
+    let url = "https://664b361fa300e8795d44a446.mockapi.io/movies/movies"
+
+    const fetchMovies = async (url) => {
+
+        let movies = await fetch(url)
+        let moviesData = await movies.json()
+        console.log(moviesData)
+    }
+
+    fetchMovies(url)
+
     {/* console.log(movieList) */ }
     const genres = ["Drama", "Thriller", "Classic", "Romance"];
      const filteredByGenre = [];

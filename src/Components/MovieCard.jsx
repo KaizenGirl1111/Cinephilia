@@ -3,8 +3,11 @@ import { useState } from 'react'
 import Modal from './Modal.jsx'
 import ReactDOM from 'react-dom'
 import Navigation from './Navigation.jsx'
-
+import EditIcon from '@mui/icons-material/Edit';
 import CartContext from '../utils/CartContext.js'
+import Shop2Icon from '@mui/icons-material/Shop2';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import {useContext } from 'react'
 function MovieCard({ name, poster, rating, summary, glimpse, director, year, cast, genre, editBtn, deleteBtn, idNo,cartValue,setCartValue}) { 
     const [cxtCartValue, setCxtCartValue] = useContext(CartContext)
@@ -70,13 +73,12 @@ function MovieCard({ name, poster, rating, summary, glimpse, director, year, cas
                     
                     <p style={ratingStyle}>⭐ {rating} </p>
                     <LikeDislike />
-                    <button onClick={summaryFunc} style={sumBtn}>{summaryBtn ? '/\\' : '\\/'}</button>
+                    <button onClick={summaryFunc} style={sumBtn}>{summaryBtn ? <KeyboardArrowUpIcon fontSize="small"/> : <KeyboardArrowDownIcon fontSize="small"/>}</button>
 
                     {summaryBtn && <Modal name={name} summary={summary} glimpse={glimpse} genre={genre} cast={cast} year={year} director={director} idNo={idNo}  />}
                     {editBtn}
                     {deleteBtn}
-                    <button onClick={() => setCartValue(cartValue + 1)}>❄️</button>
-                    <button onClick={() => setCxtCartValue(cxtCartValue+1) }>cxtCart</button>
+                    <button style={{backgroundColor: "#393e46"}} onClick={() => setCxtCartValue(cxtCartValue+1) }><Shop2Icon fontSize="small" sx={{color:"white"}}/></button>
                     </div>
                    
              </div>

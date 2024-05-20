@@ -1,6 +1,6 @@
-﻿
-import './App.css'
+﻿import './App.css'
 
+import AddMovieForm from './Components/AddMovieForm.jsx'
 import AddMovieMUI from './Components/AddMovieMUI.jsx'
 import { useState } from 'react'
 import { Navigate, Routes, Route } from 'react-router-dom'
@@ -16,14 +16,26 @@ import MovieCardMap from './Components/MovieCardMap.jsx'
 import FullInfoScreen from './Components/FullInfoScreen'
 import CartContext from './utils/CartContext.js'
 import ThemeContext from './utils/ThemeContext.js'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import MovieForm from './Components/MovieForm.jsx'
+import MovieForm_Formik from './Components/MovieForm_Formik.jsx'
+
+
 function App() {
     const [movieList, setMovieList] = useState(movie)
     const [cartValue, setCartValue] = useState(0)
     const [cxtCartValue, setCxtCartValue] = useState(0)
-    const [theme, setTheme] = useState({
+    const [themeMUI,setThemeMUI] = useState('light')
+    const darkTheme = createTheme({
+      palette: {
+        mode: themeMUI,
+      },
+    });
+   const [theme, setTheme] = useState({
         light: "light",
         dark: "dark",
-        DarkBtn: "Dark 🌙",
+        DarkBtn: "Light 💡",
         status: true
     })
     const bgstyle = {
@@ -35,12 +47,14 @@ function App() {
     {/*console.log(movieList)*/}
   return (
       <>
+            <ThemeProvider theme={darkTheme}>
+            <CssBaseline/>
            <ThemeContext.Provider value={[theme, setTheme]}> 
            <CartContext.Provider value={[cxtCartValue, setCxtCartValue]}>
 
-           <div style={bgstyle}>
-
-          <Navigation cartValue={cartValue} setCartValue={setCartValue} />
+         {/* <div style={bgstyle}>  */}
+        <div>
+          <Navigation cartValue={cartValue} setCartValue={setCartValue} themeMUI={themeMUI} setThemeMUI={setThemeMUI} />
           <GiphyEmbedWithDynamicImage />
        
           <Routes>
@@ -50,18 +64,22 @@ function App() {
           <Route path='/romance' element={<Romance movieList={movieList} setMovieList={setMovieList} />} />
               <Route path='/' element={<MovieCardMap movieList={movieList} setMovieList={setMovieList} cartValue={cartValue} setCartValue={setCartValue} />} />
         
-              <Route path='/addmovie' element={<AddMovieMUI movieList={movieList} setMovieList={setMovieList} />} />
+              <Route path='/addmovie' element={<AddMovieForm movieList={movieList} setMovieList={setMovieList} />} />
               <Route path='/movie/:idNo' element={<FullInfoScreen />} />
               <Route path='/404' element={<Page404 />} />
-          
-                <Route path='*' element={<Navigate replace to='/404'/>}/> 
+              <Route path='/addmovieMUI' element={<AddMovieMUI movieList={movieList} setMovieList={setMovieList} />} />
+              <Route path='/movieform' element={<MovieForm movieList={movieList} setMovieList={setMovieList} />} />
+                              <Route path='/formikform' element={<MovieForm_Formik movieList={movieList} setMovieList={setMovieList} />} />
+              <Route path='*' element={<Navigate replace to='/404'/>}/> 
          
           </Routes>
            </div>
           </CartContext.Provider>
           </ThemeContext.Provider > 
+          </ThemeProvider>
     </>
   )
 }
 
 export default App
+
