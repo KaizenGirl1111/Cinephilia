@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+
+let movieList = []
+const helper = async () => {
+    let res = await fetch('https://664b361fa300e8795d44a446.mockapi.io/movies/movies')
+    let data = res.json()
+   // console.log(data)
+    return data;
+}
+
+const getMovies = async () => {
+    movieList = await helper()
+    console.log(movieList)
+}
+
+getMovies()
+</script>
+</body>
+</html>

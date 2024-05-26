@@ -6,7 +6,8 @@
     "\\src",
     "\\src\\assets",
     "\\src\\Components",
-    "\\src\\utils"
+    "\\src\\utils",
+    "\\src\\utils\\hooks"
   ],
   "SelectedNode": "\\src\\App.jsx",
   "PreviewInSolutionExplorer": false

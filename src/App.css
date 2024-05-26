@@ -14,7 +14,7 @@
     margin: 3.3vh 0.7rem;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: 3%;
-    background-color: #222831;
+    /*background-color: #222831;*/
     transition: box-shadow 0.3s ease-in;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .movieName {
-    color: white;
+    /*color: white;*/
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size:1rem !important;
     
@@ -69,7 +69,7 @@
         flex: 0 0 auto;
         margin: 4vh 2rem;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        background-color: #222831;
+       /* background-color: #222831; */
         transition: box-shadow 0.3s ease-in;
         border-radius:5%;
     }
@@ -91,7 +91,7 @@
     }
 
     .movieName {
-        color: white;
+       /* color: white;*/
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         font-size: 0.5rem !important;
     }
@@ -111,7 +111,7 @@
         flex: 0 0 auto;
         margin: 4vh 1rem;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        background-color: #222831;
+        /*background-color: #222831;*/
         transition: box-shadow 0.3s ease-in;
         border-radius:5%;
     }
@@ -134,7 +134,7 @@
     }
 
     .movieName {
-        color: white;
+        /*color: white;*/
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         font-size: 0.7rem !important;
     }
@@ -159,7 +159,7 @@
         flex: 0 0 auto;
         margin: 4vh 5vw;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        background-color: #222831;
+        /*background-color: #222831;*/ 
         transition: box-shadow 0.3s ease-in;
     }
 
@@ -181,12 +181,12 @@
     }
 
     .movieName {
-        color: white;
+       /* color: white;*/
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         font-size: 0.7rem !important;
     }
     .summary {
-        color: white;
+        
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         padding-top: 6px;
     }

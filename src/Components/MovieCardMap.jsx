@@ -8,14 +8,30 @@ import Drama from './Drama.jsx'
 import Navigation from './Navigation.jsx'
 import GiphyEmbedWithDynamicImage from './GiphyEmbedWithDynamicImage.jsx'
 import Footer from './Footer.jsx'
-function MovieCardMap({movieList,setMovieList,cartValue,setCartValue }) {
+import { useEffect } from "react"
+import axios from "axios"
+
+function MovieCardMap({cartValue, setCartValue }) {
+    const [movieList,setMovieList] = useState([])
     let url = "https://664b361fa300e8795d44a446.mockapi.io/movies/movies"
 
+    useEffect(() => {
+        console.log("Data fetch movies")
+        fetchMovies()
+    },[]) //initial render, has empty dependency list
+    /*
     const fetchMovies = async (url) => {
 
         let movies = await fetch(url)
         let moviesData = await movies.json()
         console.log(moviesData)
+        setMovieList(moviesData)
+    }
+    */
+    const fetchMovies = async (url) => {
+        let movies = await axios.get(url)
+        console.log(movies.data)
+        setMovieList(movies.data)
     }
 
     fetchMovies(url)

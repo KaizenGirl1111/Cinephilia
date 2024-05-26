@@ -20,13 +20,17 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MovieForm from './Components/MovieForm.jsx'
 import MovieForm_Formik from './Components/MovieForm_Formik.jsx'
-
+import EditForm from "./Components/EditForm.jsx"
+import Shimmer from './Components/Shimmer.jsx'
+import { Provider } from 'react-redux'
+import store from './utils/store.jsx'
+import ThemeContextMUI from './utils/ThemeContextMUI.js'
 
 function App() {
     const [movieList, setMovieList] = useState(movie)
     const [cartValue, setCartValue] = useState(0)
     const [cxtCartValue, setCxtCartValue] = useState(0)
-    const [themeMUI,setThemeMUI] = useState('light')
+    const [themeMUI,setThemeMUI] = useState("light")
     const darkTheme = createTheme({
       palette: {
         mode: themeMUI,
@@ -47,16 +51,18 @@ function App() {
     {/*console.log(movieList)*/}
   return (
       <>
-            <ThemeProvider theme={darkTheme}>
-            <CssBaseline/>
-           <ThemeContext.Provider value={[theme, setTheme]}> 
-           <CartContext.Provider value={[cxtCartValue, setCxtCartValue]}>
+          <Provider store={store }>
+          <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <ThemeContextMUI.Provider value={[themeMUI, setThemeMUI]}>
+          {/*  <ThemeContext.Provider value={[theme, setTheme]}> */}
+          <CartContext.Provider value={[cxtCartValue, setCxtCartValue]}>
 
          {/* <div style={bgstyle}>  */}
         <div>
-          <Navigation cartValue={cartValue} setCartValue={setCartValue} themeMUI={themeMUI} setThemeMUI={setThemeMUI} />
+          <Navigation cartValue={cartValue} setCartValue={setCartValue} />
           <GiphyEmbedWithDynamicImage />
-       
+                          {/*<Shimmer/>*/}
           <Routes>
           <Route path='/thriller' element={<Thriller movieList={movieList} setMovieList={setMovieList} />} />
           <Route path='/drama' element={<Drama movieList={movieList} setMovieList={setMovieList} />} />
@@ -69,14 +75,17 @@ function App() {
               <Route path='/404' element={<Page404 />} />
               <Route path='/addmovieMUI' element={<AddMovieMUI movieList={movieList} setMovieList={setMovieList} />} />
               <Route path='/movieform' element={<MovieForm movieList={movieList} setMovieList={setMovieList} />} />
-                              <Route path='/formikform' element={<MovieForm_Formik movieList={movieList} setMovieList={setMovieList} />} />
+              <Route path='/formikform' element={<MovieForm_Formik movieList={movieList} setMovieList={setMovieList} />} />
+              <Route path='/editform/:idNo' element={<EditForm/> } />
               <Route path='*' element={<Navigate replace to='/404'/>}/> 
          
           </Routes>
            </div>
           </CartContext.Provider>
-          </ThemeContext.Provider > 
+          {/*      </ThemeContext.Provider >  */}
+          </ThemeContextMUI.Provider>
           </ThemeProvider>
+      </Provider>
     </>
   )
 }

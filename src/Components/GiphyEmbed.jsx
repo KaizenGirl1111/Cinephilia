@@ -14,7 +14,7 @@ function GiphyEmbed({ imageUrl }) {
                 }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} />
 
                 <div style={{
-                    gridColumn: "4/12", gridRow: "2/6", marginTop: "10%", paddingTop: (windowWidth <= 768) ? "2%" : "20%", zIndex: 1, border: windowWidth <= 768 ? "none" : "4px solid white", height: "20rem", visibility: isHovered ? "visible" : "hidden", overflow: "hidden"
+                    gridColumn: "4/12", gridRow: "2/6", marginTop: "10%", paddingTop: (windowWidth <= 768) ? "2%" : "12%", zIndex: 1, border: windowWidth <= 768 ? "none" : "4px solid white", height: "20rem", visibility: isHovered ? "visible" : "hidden", overflow: "hidden"
 
 
                     // Media query for smaller screens
