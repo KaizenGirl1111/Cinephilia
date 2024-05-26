@@ -18,7 +18,7 @@ function Thriller({ cartValue, setCartValue }) {
    // const [movieList,setMovieList] = useState([])
     const filteredByGenre = movieList.filter(film => film.genre == "Thriller")
 
-    console.log(filteredByGenre)
+   // console.log(filteredByGenre)
 
     /*
  const fetchMovieData = async () => {
@@ -47,7 +47,7 @@ function Thriller({ cartValue, setCartValue }) {
 
                     {filteredByGenre.map((element, index) => (
 
-                        <MovieCard key={index} {...element} editBtn={<button style={{ backgroundColor: "#393e46" }}><EditIcon fontSize="small" sx={{ color: "white" }} /></button>} deleteBtn={<button style={{ backgroundColor: "#393e46" }} ><DeleteIcon fontSize="small" /></button>} cartValue={cartValue} setCartValue={setCartValue} idNo={element.id} />
+                        <MovieCard key={index} element={element} {...element} editBtn={<button style={{ backgroundColor: "#393e46" }}><EditIcon fontSize="small" sx={{ color: "white" }} /></button>} deleteBtn={<button style={{ backgroundColor: "#393e46" }} ><DeleteIcon fontSize="small" /></button>} cartValue={cartValue} setCartValue={setCartValue} idNo={element.id} />
                     ))}
                 </div>
 

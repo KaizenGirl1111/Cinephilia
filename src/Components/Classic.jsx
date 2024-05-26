@@ -15,13 +15,13 @@ function Classic({ cartValue,setCartValue }) {
 
    // const movieList = useGetMovies()
     const { data: movieList, error, loading } = useUrlGetMovies('https://664b361fa300e8795d44a446.mockapi.io/movies/movies')
-    console.log(movieList)
+    //console.log(movieList)
     //const [movieList,setMovieList] = useState([])
     {/* console.log(movieList) */ }
     const genres = ["Drama", "Thriller", "Classic", "Romance"];
     const filteredByGenre = movieList.filter(film => film.genre == "Classic")
 
-    console.log(filteredByGenre)
+    //console.log(filteredByGenre)
     /*
     const fetchMovieData = async () => {
         let res = await axios.get('https://664b361fa300e8795d44a446.mockapi.io/movies/movies')
@@ -47,7 +47,7 @@ function Classic({ cartValue,setCartValue }) {
 
                     {filteredByGenre.map((element, index) => (
 
-                        <MovieCard key={index} {...element} editBtn={<button style={{ backgroundColor: "#393e46" }}><EditIcon fontSize="small" sx={{ color: "white" }} /></button>} deleteBtn={<button style={{ backgroundColor: "#393e46" }}><DeleteIcon fontSize="small" sx={{ color: "white" }} /></button>} cartValue={cartValue} setCartValue={setCartValue} idNo={element.id} />
+                        <MovieCard key={index} element={element} {...element} editBtn={<button style={{ backgroundColor: "#393e46" }}><EditIcon fontSize="small" sx={{ color: "white" }} /></button>} deleteBtn={<button style={{ backgroundColor: "#393e46" }}><DeleteIcon fontSize="small" sx={{ color: "white" }} /></button>} cartValue={cartValue} setCartValue={setCartValue} idNo={element.id} />
                     ))}
                 </div>
 

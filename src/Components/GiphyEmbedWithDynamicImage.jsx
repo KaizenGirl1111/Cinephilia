@@ -15,7 +15,8 @@ function GiphyEmbedWithDynamicImage() {
         '/404': '',
         '/addmovie': '',
         '/movie': '',
-        'movieform':''
+        'movieform': '',
+        '/reduxcart':''
     };
     const imageUrl = giphyImages[location.pathname];
     useEffect(()=>{

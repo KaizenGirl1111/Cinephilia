@@ -18,14 +18,17 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import themeContext from "../utils/ThemeContext.js"
 import themeContextMUI from "../utils/ThemeContextMUI.js"
-function MovieCard({ name, poster, rating, summary, glimpse, director, year, cast, genre, editBtn, deleteBtn, idNo,cartValue,setCartValue}) { 
+import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
+import { addItem } from '../utils/cartSlice.jsx'
+import {useDispatch } from 'react-redux'
+function MovieCard({element, name, poster, rating, summary, glimpse, director, year, cast, genre, editBtn, deleteBtn, idNo,cartValue,setCartValue}) { 
     const [cxtCartValue, setCxtCartValue] = useContext(CartContext)
     const [theme, setTheme] = useState(themeContext)
     const [themeMUI, setThemeMUI] = useContext(themeContextMUI)
-     console.log("cxt",cxtCartValue)
+   //  console.log("cxt",cxtCartValue)
     const [watchListAdded, setWatchListAdded] = useState(false)
-    console.log(idNo)
-    console.log(cartValue,setCartValue)
+   // console.log(idNo)
+   // console.log(cartValue,setCartValue)
     const addToList = () => {
         (watchListAdded === true) ? setWatchListAdded(false) : setWatchListAdded(true)
     }
@@ -55,8 +58,8 @@ function MovieCard({ name, poster, rating, summary, glimpse, director, year, cas
         fontSize: window.innerWidth <= 500 ? "0.4rem !important" : window.innerWidth <= 900 ? "2rem" : "0.7rem",
         color: (themeMUI == "light") ? "black" : "white" ,
         float: "right",
-        width: "30px",
-        height: "30px",
+        width: "1.5rem",
+        height: "2rem",
         borderRadius: "50%"
         
     }
@@ -72,7 +75,11 @@ function MovieCard({ name, poster, rating, summary, glimpse, director, year, cas
     const title = {
         fontSize: window.innerWidth <= 500 ? "0.4rem !important" : window.innerWidth <= 900 ? "2rem" : "0.7rem",
     }
-    
+    const dispatch = useDispatch()
+    const handleAddItem = (movie) => {
+        console.log(movie)
+        dispatch(addItem(movie))
+    }
     const deleteMovieById = async (id) => {
         try {
             const res = await axios.delete(`https://664b361fa300e8795d44a446.mockapi.io/movies/movies/${id}`);
@@ -104,10 +111,12 @@ function MovieCard({ name, poster, rating, summary, glimpse, director, year, cas
                    
                     {summaryBtn && <Modal name={name} summary={summary} glimpse={glimpse} genre={genre} cast={cast} year={year} director={director} idNo={idNo} />}
                     <Box sx={{marginTop:"0.3rem"} }>
-                    <Button sx={{  borderRadius: "50%", height: "2rem", width: "2rem",marginRight:"0.7rem",color:(themeMUI=="light")?"black":"white" }} onClick={() => navigate(`/editform/${idNo}`)}> <EditOutlinedIcon fontSize="small" /> </Button>
-                        <Button sx={{ borderRadius: "50%", height: "2rem", width: "2rem", marginRight: "0.7rem", color: (themeMUI == "light") ? "black" : "white" }} onClick={() => deleteMovieById(idNo)}><DeleteOutlineOutlinedIcon fontSize="small"  /></Button>
-                        <Button sx={{ borderRadius: "50%", height: "2rem", width: "2rem", marginRight: "0.7rem", color: (themeMUI == "light") ? "black" : "white" }} onClick={() => setCxtCartValue(cxtCartValue + 1)}><ShoppingCartOutlinedIcon fontSize="small" /></Button>
+                    <Button sx={{  borderRadius: "50%", height: "2rem", width: "1em",marginRight:"0.1rem",color:(themeMUI=="light")?"black":"white" }} onClick={() => navigate(`/editform/${idNo}`)}> <EditOutlinedIcon fontSize="small" /> </Button>
+                        <Button sx={{ borderRadius: "50%", height: "2rem", width: "1rem", marginRight: "0.1rem", color: (themeMUI == "light") ? "black" : "white" }} onClick={() => deleteMovieById(idNo)}><DeleteOutlineOutlinedIcon fontSize="small"  /></Button>
+                        <Button sx={{ borderRadius: "50%", height: "2rem", width: "1rem", marginRight: "0.1rem", color: (themeMUI == "light") ? "black" : "white" }} onClick={() => setCxtCartValue(cxtCartValue + 1)}><ShoppingCartOutlinedIcon fontSize="small" /></Button>
+                        <Button sx={{ borderRadius: "50%", height: "2rem", width: "1rem", marginRight: "0.1rem", color: (themeMUI == "light") ? "black" : "white" }} onClick={()=>handleAddItem(element) }><BookmarkAddOutlinedIcon fontSize="small"/></Button>
                     </Box>
+
                 </div>
           
              </div>

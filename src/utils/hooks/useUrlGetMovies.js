@@ -21,7 +21,7 @@ const useUrlGetMovies = (url) => {
 
     useEffect(() => {
         fetchMovies()
-    }, [url])
+    },[url])
     return {data, error, loading}
 }
 

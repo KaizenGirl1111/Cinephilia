@@ -17,7 +17,7 @@ function Drama({ cartValue,setCartValue }) {
     const genres = ["Drama", "Thriller", "Classic", "Romance"];
    // const [movieList,setMovieList] = useState([])
     const   filteredByGenre = movieList.filter(film => film.genre == "Drama")
-    console.log(filteredByGenre)
+    //console.log(filteredByGenre)
    
 
     /*
@@ -45,7 +45,7 @@ function Drama({ cartValue,setCartValue }) {
 
                     {filteredByGenre.map((element, index) => (
 
-                        <MovieCard key={index} {...element} editBtn={<button style={{ backgroundColor: "#393e46" }}><EditIcon fontSize="small" sx={{ color: "white" }} /></button>} deleteBtn={<button style={{ backgroundColor: "#393e46" }}><DeleteIcon fontSize="small" sx={{ color: "white" }} /></button>} cartValue={cartValue} setCartValue={setCartValue} idNo={element.id} />
+                        <MovieCard key={index} element={element} {...element} editBtn={<button style={{ backgroundColor: "#393e46" }}><EditIcon fontSize="small" sx={{ color: "white" }} /></button>} deleteBtn={<button style={{ backgroundColor: "#393e46" }}><DeleteIcon fontSize="small" sx={{ color: "white" }} /></button>} cartValue={cartValue} setCartValue={setCartValue} idNo={element.id} />
                     ))}
                 </div>
 

@@ -25,6 +25,7 @@ import Shimmer from './Components/Shimmer.jsx'
 import { Provider } from 'react-redux'
 import store from './utils/store.jsx'
 import ThemeContextMUI from './utils/ThemeContextMUI.js'
+import Cart from './Components/Cart.jsx'
 
 function App() {
     const [movieList, setMovieList] = useState(movie)
@@ -76,7 +77,8 @@ function App() {
               <Route path='/addmovieMUI' element={<AddMovieMUI movieList={movieList} setMovieList={setMovieList} />} />
               <Route path='/movieform' element={<MovieForm movieList={movieList} setMovieList={setMovieList} />} />
               <Route path='/formikform' element={<MovieForm_Formik movieList={movieList} setMovieList={setMovieList} />} />
-              <Route path='/editform/:idNo' element={<EditForm/> } />
+              <Route path='/editform/:idNo' element={<EditForm />} />
+              <Route path='/reduxcart' element={<Cart/> } />
               <Route path='*' element={<Navigate replace to='/404'/>}/> 
          
           </Routes>

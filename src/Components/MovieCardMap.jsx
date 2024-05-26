@@ -30,7 +30,7 @@ function MovieCardMap({cartValue, setCartValue }) {
     */
     const fetchMovies = async (url) => {
         let movies = await axios.get(url)
-        console.log(movies.data)
+      //  console.log(movies.data)
         setMovieList(movies.data)
     }
 

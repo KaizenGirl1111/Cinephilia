@@ -42,7 +42,7 @@ function Romance({ cartValue, setCartValue }) {
 
     },[])
     */
-    console.log("test")
+   // console.log("test")
     if (loading) return <> <Shimmer /> </>
     if (error)  return <p>Error: {error.message}</p> 
     
@@ -59,7 +59,7 @@ function Romance({ cartValue, setCartValue }) {
 
                     {filteredByGenre.map((element, index) => (
 
-                        <MovieCard key={index} {...element} editBtn={<button style={{ backgroundColor: "#393e46" }}><EditIcon fontSize="small" sx={{ color: "white" }} /></button>}
+                        <MovieCard key={index} element={element} {...element} editBtn={<button style={{ backgroundColor: "#393e46" }}><EditIcon fontSize="small" sx={{ color: "white" }} /></button>}
                             deleteBtn={<button style={{ backgroundColor: "#393e46" }}><DeleteIcon fontSize="small" sx={{ color: "white" }} /></button>} idNo={element.id} cartValue={cartValue} setCartValue={setCartValue} />
                     ))}
                 </div>

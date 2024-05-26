@@ -8,6 +8,8 @@ import ThemeContextMUI from '../utils/ThemeContextMUI.js'
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import BookmarkAddedOutlinedIcon from '@mui/icons-material/BookmarkAddedOutlined';
+import {useSelector } from "react-redux"
 function Navigation({ cartValue, setCartValue }) {
     const [cxtCartValue, setCxtCartValue] = useContext(CartContext)
     const [themeMUI, setThemeMUI] = useContext(ThemeContextMUI)
@@ -38,7 +40,7 @@ function Navigation({ cartValue, setCartValue }) {
        
     }
     const space = {
-        padding: "2.5vh 0.5vw 0vw 0.5vw",
+        padding: "2.5vh 0.2vw 0vw 0.2vw",
         fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif",
         color:  "white",
         verticalAlign: "middle",
@@ -70,6 +72,8 @@ function Navigation({ cartValue, setCartValue }) {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const cartItems = useSelector((store) => store.cart.items)
+    console.log(cartItems)
     return (
         <>
             {window.innerWidth <= 768 ?( <div style={navStyle}>
@@ -147,6 +151,7 @@ function Navigation({ cartValue, setCartValue }) {
                         })
                     }}> { theme.DarkBtn } </button> */}
                         {/*  <div style={space}>{cartValue}🛒</div> */}
+                        <div style={space}><Link style={link} to="/reduxcart"><BookmarkAddedOutlinedIcon />{cartItems.length}</Link></div>
                         <div style={space}>
                             🛒{cxtCartValue}
                         </div>
